@@ -11,10 +11,12 @@ from src import (
 env = simpy.Environment()
 
 detector_list = [
-    detector_module.Detector(
+    detector_module.Detector_wProbDetectDecayingLinearly(
         name="detector-0",
         env=env,
         location=location_module.Location(x_list=[0]),
+        max_range=100,
+        decay_start_range=50,
     )
 ]
 
@@ -27,7 +29,7 @@ center = center_module.DetectionCenter(
     name="center",
     env=env,
     step_time=1,
-    detector_list=detector_list,
+    detector_list=detector_list,  # type: ignore
     target=target,
     num_steps=10,
 )

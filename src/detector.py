@@ -35,16 +35,20 @@ class Detector:
         return r <= p
 
 
-class Detector_wProbDetectDecayingLinearly:
+class Detector_wProbDetectDecayingLinearly(Detector):
     def __init__(
         self,
         name: str,
         env: simpy.Environment,
+        location: location_module.Location,
         max_range: int,
         decay_start_range: int,
     ) -> None:
-        self.name = name
-        self.env = env
+        super().__init__(
+            name=name,
+            env=env,
+            location=location,
+        )
         self.max_range = max_range
         self.decay_start_range = decay_start_range
 
@@ -52,6 +56,7 @@ class Detector_wProbDetectDecayingLinearly:
         return (
             "Detector_wProbDetectDecayingLinearly("
             f"name= {self.name}, "
+            f"location= {self.location}, "
             f"max_range= {self.max_range}, "
             f"decay_start_range= {self.decay_start_range}"
             ")"
